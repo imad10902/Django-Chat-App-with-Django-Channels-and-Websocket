@@ -36,9 +36,6 @@ rsa==4.9
 service-identity==23.1.0
 six==1.16.0
 sqlparse==0.4.4
-PEP517
-wheel
-setuptools
 Twisted==22.10.0
 twisted-iocpsupport==1.0.3
 txaio==23.1.1
