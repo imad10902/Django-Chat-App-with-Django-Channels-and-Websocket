@@ -1,0 +1,366 @@
+{% extends 'main.html' %} {% block content %}
+<style>
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  :root {
+    --purple: hsl(240, 80%, 89%);
+    --pink: hsl(0, 59%, 94%);
+    --light-bg: hsl(204, 37%, 92%);
+    --light-gray-bg: hsl(0, 0%, 94%);
+    --white: hsl(0, 0%, 100%);
+    --dark: hsl(0, 0%, 7%);
+    --text-gray: hsl(0, 0%, 30%);
+  }
+
+  body {
+    background: var(--light-bg);
+    font-family: "Space Grotesk", sans-serif;
+    color: var(--dark);
+  }
+
+  h3 {
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 1em;
+    line-height: 1.7;
+    font-weight: 300;
+    color: var(--text-gray);
+  }
+
+  .description {
+    white-space: wrap;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .wrap {
+    display: flex;
+    justify: space-between;
+    align-items: stretch;
+    width: 100%;
+    gap: 24px;
+    padding: 24px;
+    flex-wrap: wrap;
+  }
+
+  .box {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    position: relative;
+    padding: 24px;
+    background: #fff;
+  }
+
+  .box-top {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+
+  .box-image {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    object-position: 50% 20%;
+  }
+
+  .title-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .box-title {
+    border-left: 3px solid var(--purple);
+    padding-left: 12px;
+  }
+
+  .user-follow-info {
+    color: hsl(0, 0%, 60%);
+  }
+
+  .button-read {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: auto;
+    padding: 16px;
+    color: #000;
+    background: transparent;
+    box-shadow: 0px 0px 0px 1px #6900ba;
+    transition: background 0.4s ease;
+  }
+
+  .button-read:hover {
+    background: #6900ba;
+    color: #fff;
+  }
+
+  .fill-one {
+    background: var(--light-bg);
+  }
+
+  .fill-two {
+    background: var(--pink);
+  }
+
+  /* RESPONSIVE QUERIES */
+
+  @media (min-width: 320px) {
+    .title-flex {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: start;
+    }
+    .user-follow-info {
+      margin-top: 6px;
+    }
+  }
+
+  @media (min-width: 460px) {
+    .title-flex {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: start;
+    }
+    .user-follow-info {
+      margin-top: 6px;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .box {
+      flex-basis: calc(50% - 12px);
+    }
+    .title-flex {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: start;
+    }
+    .user-follow-info {
+      margin-top: 6px;
+    }
+  }
+
+  @media (min-width: 840px) {
+    .title-flex {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: start;
+    }
+    .user-follow-info {
+      margin-top: 6px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .box {
+      flex-basis: calc(33.3% - 16px);
+    }
+    .title-flex {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: start;
+    }
+    .user-follow-info {
+      margin-top: 6px;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .box {
+      flex-basis: calc(25% - 18px);
+    }
+  }
+
+  .categories {
+    display: flex;
+    flex-wrap:wrap ;
+    justify-content: center;
+    justify-content: space-evenly;
+  }
+  .create-blog {
+    display: flex;
+    flex-wrap:wrap ;
+    justify-content: center;
+    justify-content: space-evenly;
+  }
+  .button {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  border: 2px solid #008CBA;
+  margin: 1rem;
+}
+
+.button:hover {
+    background-color: white;
+  color: black;
+  border: 2px solid #008CBA; /* Green */
+}
+
+.button-create {
+    background-color: #6900ba;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  border: 2px solid #6900ba;
+  margin: 2rem
+}
+
+.button-create:hover {
+    background-color: white;
+  color: black;
+  border: 2px solid #6900ba;
+}
+
+@media screen and (max-width: 600px) {
+  .categories {
+    flex-direction: column;
+  }
+}
+.text-container {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.truncated-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.delete-edit{
+    display: flex;
+    justify-content: center;
+    justify-items: space-evenly;
+}
+
+@media screen and (max-width: 600px) {
+  .delete-edit {
+    flex-direction: column;
+  }
+}
+
+.button-edit {
+    background-color: #00ba1f;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  transition-duration: 0.4s;
+  border: 2px solid #00ba06;
+  margin: 2rem
+}
+
+.button-edit:hover {
+    background-color: white;
+  color: black;
+  border: 2px solid #00ba13;
+}
+
+.button-delete {
+    background-color: #ba0000;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  transition-duration: 0.4s;
+  border: 2px solid #ba0000;
+  margin: 2rem
+}
+
+.button-delete:hover {
+    background-color: white;
+  color: black;
+  border: 2px solid #ba0000;
+}
+</style>
+
+{% if request.user.role == 'doctor' %}
+<div class="create-blog">
+  <a href="{% url 'create-blog' %}" class="button-create">Create Blog</a>
+</div>
+{% endif %}
+
+
+<div class="categories">
+    <a class="button" href="{% url 'blogs' %}">ALL</a>
+    <a class="button" href="{% url 'blogs' %}?q=HEART%20DISEASE">HEART DISEASE</a>
+    <a class="button" href="{% url 'blogs' %}?q=EAR%20PROBLEMS">EAR PROBLEMS</a></li>
+    <a class="button" href="{% url 'blogs' %}?q=COVID-19">COVID-19</a>
+    <a class="button" href="{% url 'blogs' %}?q=EYE%20PROBLEMS" ->EYE PROBLEMS</a>
+</div>
+
+<div class="wrap">
+  {% for blog in blogs %}
+
+  <div class="box">
+    <div class="box-top">
+      <img
+        class="box-image"
+        src="{{ blog.image.url }}"
+      />
+      <div class="title-flex">
+        <h3 class="box-title">{{blog.title}}</h3>
+        <p class="user-follow-info">{{blog.author}}</p>
+        <p class="user-follow-info">{{blog.category}}   </p>
+      </div>
+      <p class="description truncated-text">
+        {{blog.summary}}
+      </p>
+    </div>
+    {% if request.user == blog.author %}
+  <div class="delete-edit">
+    <a class="button-edit" href="{% url 'edit-blog' blog.id %}">Edit</a>
+    <a class="button-delete" href="{% url 'delete-blog' blog.id %}">Delete</a>
+  </div>
+  {% endif %}   
+    <a href="{% url 'blog' blog.id %}" class="button-read">Read</a>
+  </div>
+
+  
+
+  {% endfor %}
+</div>
+
+{% endblock content %}

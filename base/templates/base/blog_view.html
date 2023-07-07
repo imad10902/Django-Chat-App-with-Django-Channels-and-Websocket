@@ -1,0 +1,32 @@
+{% extends 'main.html' %} {% block content %}
+<style>
+  .heading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem;
+  }
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem;
+    text-align: justify;
+  }
+  .image {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem;
+  }
+</style>
+
+<div>
+  <h2 class="heading">{{blog.title}}</h2>
+</div>
+<div class="image">
+  <img src="{{ blog.image.url }}" />
+</div>
+<div class="content">{{blog.content}}</div>
+
+{% endblock %}
